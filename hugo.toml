@@ -1,0 +1,333 @@
+baseURL = " "
+
+# 更改使用 Hugo 构建网站时使用的默认主题
+theme = ["FixIt", "cmpt-flyfish"]
+title = "Altyrast's box"
+
+defaultContentLanguage = 'zh-cn'
+languageCode = "zh-CN"
+languageName = "简体中文"
+hasCJKLanguage = true
+paginate = 10
+enableEmoji = true
+
+# ------------------------------------------------------------------------
+# 继承 FixIt 主题的 markup，outputs 和 taxonomies 配置
+[markup]
+  _merge = "shallow"
+
+[taxonomies]
+  _merge = "shallow"
+
+# ------------------------------------------------------------------------
+[menu]
+  [[menu.main]]
+    identifier = "archives"
+    #  父级菜单项的标识符 (identifier)
+    parent = ""
+    # 你可以在名称（允许 HTML 格式）之前添加其他信息，例如图标
+    pre = ""
+    # 你可以在名称（允许 HTML 格式）之后添加其他信息，例如图标
+    post = ""
+    name = "文档"
+    url = "/archives/"
+    # 当你将鼠标悬停在此菜单链接上时，将显示的标题
+    title = ""
+    weight = 1
+    #  向菜单项添加用户定义的内容
+    [menu.main.params]
+      # 添加 CSS 类到菜单项
+      class = ""
+      # 是否为草稿菜单，类似草稿页面
+      draft = false
+      #  添加 fontawesome 图标到菜单项
+      icon = "fa-solid fa-archive"
+      #  设置菜单项类型，可选值：["mobile", "desktop"]
+      type = ""
+      #  是否显示子菜单项分割线
+      divided = false
+  [[menu.main]]
+  identifier = "categories"
+  parent = ""
+  pre = ""
+  post = ""
+  name = "分类"
+  url = "/categories/"
+  title = ""
+  weight = 2
+  [menu.main.params]
+    icon = "fa-solid fa-folder-tree"
+  [[menu.main]]
+    identifier = "collections"
+    parent = "categories"
+    pre = ""
+    post = ""
+    name = "合集"
+    url = "/collections/"
+    title = ""
+    weight = 3
+    [menu.main.params]
+      icon = "fa-solid fa-layer-group"
+  [[menu.main]]
+    identifier = "tags"
+    parent = "categories"
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+    weight = 4
+    [menu.main.params]
+      icon = "fa-solid fa-tags"
+
+
+# ------------------------------------------------------------------------
+[mediaTypes]
+  [mediaTypes."text/markdown"]
+    suffixes = ["md"]
+
+# ------------------------------------------------------------------------
+[outputFormats]
+  #  用于输出 /archives/index.html 文件的设置
+  [outputFormats.archives]
+    path = "archives"
+    baseName = "index"
+    mediaType = "text/html"
+    isPlainText = false
+    isHTML = true
+    permalinkable = true
+  #  用于输出 /offline/index.html 文件的设置
+  [outputFormats.offline]
+    path = "offline"
+    baseName = "index"
+    mediaType = "text/html"
+    isPlainText = false
+    isHTML = true
+    permalinkable = true
+  #  用于输出 readme.md 文件的设置
+  [outputFormats.readme]
+    baseName = "readme"
+    mediaType = "text/markdown"
+    isPlainText = true
+    isHTML = false
+  #  用于输出 baidu_urls.txt 文件的设置
+  [outputFormats.baidu_urls]
+    baseName = "baidu_urls"
+    mediaType = "text/plain"
+    isPlainText = true
+    isHTML = false
+  #  用于输出 search.json 文件的设置
+  [outputFormats.search]
+    baseName = "search"
+    mediaType = "application/json"
+    rel = "search"
+    isPlainText = true
+    isHTML = false
+    permalinkable = true
+
+# ------------------------------------------------------------------------
+[outputs]
+  home = ["html", "rss", "archives", "offline", "search"]
+  page = ["html"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html", "rss"]
+
+# ------------------------------------------------------------------------
+[params]
+  # FixIt 主题版本，必写
+  version = "0.3.X"
+  description = ""
+  keywords = []
+  defaultTheme = "auto"
+  dateFormat = "2006-01-02"
+  enablePWA = false
+  externalIcon = true
+  capitalizeTitles = true
+  withSiteTitle = true
+  disableThemeInject = true
+  
+  # 作者设置
+  [params.author]
+    name = "Altyrast"
+    email = ""
+    link = ""
+    avatar = "/avater.jpg"
+  
+  # App图标
+  [params.app]
+    name = ""
+    shortName = ""
+    noFavicon = false
+    svgFavicon = "/favicon.ico"
+    iconColor = "#5bbad5"
+    tileColor = "#da532c"
+    [params.app.themeColor]
+      light = "#f8f8f8"
+      dark = "#252627"
+
+  # 搜索
+  [params.search]
+    enable = true
+    type = "fuse"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+    [params.search.algolia]
+      index = ""
+      appID = ""
+      searchKey = ""
+    [params.search.fuse]
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+      useExtendedSearch = false
+      ignoreFieldNorm = false
+
+  # 面包屑导航
+  [params.breadcrumb]
+    enable = true
+    sticky = true
+    showHome = true
+    separator = "/"
+    capitalize = false
+
+  # Header设置
+  [params.header]
+    desktopMode = "sticky"
+    mobileMode = "auto"
+  [params.header.title]
+    logo = ""
+    name = ""
+    pre = "🕳️"
+    post = ""
+    typeit = false
+  [params.header.subtitle]
+    name = ""
+    typeit = false
+  
+  # footer设置
+  [params.footer]
+    enable = true
+    copyright = true
+    author = true
+    since = "2024"
+    gov = ""
+    icp = ""
+    license = "自由转载-非商用-非衍生-保持署名(Licensed under CC BY-NC-SA 4.0)仅供学习交流，部分内容可能源自他人，如有侵权请联系博主"
+    [params.footer.powered]
+      enable = true
+      hugoLogo = true
+      themeLogo = true
+    [params.footer.siteTime]
+      enable = false
+      animate = true
+      icon = "fa-solid fa-heartbeat"
+      pre = ""
+      value = ""
+    [params.footer.order]
+      powered = 0
+      copyright = 0
+      statistics = 0
+      visitor = 0
+      beian = 0
+
+
+  # 主页设置
+  [params.home]
+    paginate = 10
+    [params.home.profile]
+      enable = true
+      gravatarEmail = ""
+      avatarURL = "/avater.jpg"
+      avatarMenu = ""
+      title = ""
+      subtitle = "Stay hungry, Stay foolish."
+      typeit = true
+      social = true
+      disclaimer = ""
+    [params.home.posts]
+      enable = true
+      paginate = 6
+    [params.social]
+      [params.social.GitHub]
+        id = "Altyrast"
+        Weight = 0
+        Prefix = "https://github.com/"
+        Title = "GitHub"
+    
+
+  # 归档页面设置
+  [params.archives]
+    paginate = 20
+    dateFormat = "01-02"
+  
+  # List（目录或标签）页面配置
+  [params.list]
+    paginate = 20
+    dateFormat = "01-02"
+    [params.list.feed]
+      limit = -1
+      fullText = false
+  
+  # 标签云配置
+  [params.tagcloud]
+    enable = true
+    min = 14
+    max = 32
+    peakCount = 10
+    orderby = "name"
+  
+  # 最近更新显示
+  [params.recentlyUpdated]
+    archives = false
+    section = false
+    list = false
+    days = 30
+    maxCount = 10
+  
+  # 自定义块
+  [params.customPartials]
+    head = []
+    profile = []
+    aside = []
+    comment = []
+    footer = []
+    widgets = []
+    assets = [
+      "inject/cmpt-flyfish.html",
+    ]
+    postFooterBefore = []
+    postFooterAfter = []
+
+  [params.flyfish]
+    enable = true
+    light = "rgb(0 119 190 / 10%)"
+    dark = "rgb(255 255 255 / 10%)"
+
+  # 兼容性设置
+  [params.compatibility]
+    # 是否使用 Polyfill.io 
+    polyfill = false
+    # 是否使用 object-fit-images 来兼容旧式浏览器
+    objectFit = false
+
+  # 返回顶部按钮
+  [params.backToTop]
+    enable = true
+    scrollpercent = true
+
+# ------------------------------------------------------------------------
+  [frontmatter]
+
+    # 文章跟新信息
+      lastmod = [":git", ":fileModTime"]
+    # 允许获取 git 信息
+      enableGitInfo = true
