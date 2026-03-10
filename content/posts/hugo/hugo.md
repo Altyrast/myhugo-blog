@@ -331,38 +331,10 @@ ssh-add ~/.ssh/id_rsa_github
        Content-Type: application/javascript
      ```
 
-   - 确保 `_headers` 文件被 Hugo 复制到部署目录
-
-     - 打开 `hugo.toml`，添加或修改 `staticDir` 配置，确保 `_headers` 被包含在部署产物中：
-
-     ```
-     # 将根目录的 _headers 等静态文件包含进去
-     staticDir = ["static", "assets"]
-     
-     # 或者使用 mounts 配置（更灵活）
-     [module]
-       [[module.mounts]]
-         source = "static"
-         target = "static"
-       [[module.mounts]]
-         source = "assets"
-         target = "assets"
-       [[module.mounts]]
-         # 关键：将根目录的 _headers 挂载到部署根目录
-         source = "_headers"
-         target = "_headers"
-     ```
-
-     
-
-2. 
+   - 确保 `_headers` 文件被 Hugo 复制到部署目录，可以修改`hugo.toml`文件或者直接将`_headers`文件放在`static/`文件夹中，`hugo`会自动把 `static/` 文件夹里的所有文件（包括 `_headers`）原封不动地复制到部署根目录。
 
 
 
 
 
 
-
-### 参考
-
-[hugo官方部署文档](https://gohugo.io/host-and-deploy/host-on-cloudflare/#procedure)
