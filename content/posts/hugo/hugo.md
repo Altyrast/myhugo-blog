@@ -12,6 +12,8 @@ tags:
   - hugo
 categories:
   - 博客搭建
+collections:
+  - hugo
 
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
@@ -212,6 +214,16 @@ hugo server -D --disableFastRender
    ```
 
    前一部分执行成功后才执行后半部分，前一部分是确保 Cloudflare 构建环境里，`themes/FixIt` 文件夹是**完整、版本正确、包含所有嵌套依赖**的，后一部分中，`--gc`为垃圾回收，清理旧缓存和残留文件，避免 `public` 目录堆积垃圾；`--minify`是为压缩所有静态资源（HTML/CSS/JS），减小体积，提升访问速度；`--baseURL` 强制覆盖 `hugo.toml` 里的 `baseURL` 配置，用命令行里的值代替；`$CF_PAGES_URL`是**Cloudflare Pages 提供的内置环境变量**，会自动填充为当前部署的完整 URL，可实现动态适配，解决页面部署后空白的问题。
+
+6. 后续推送至`GitHub`时，`Cloudflare Pages`会自动触发重新构建和部署
+
+   ```
+   git add .
+   git commit -m "xxx"
+   git push
+   ```
+
+   
 
 
 
