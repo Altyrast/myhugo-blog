@@ -1,0 +1,3 @@
+# 强制修正 .cjs 文件的 MIME 类型为可执行 JavaScript
+/*.cjs
+  Content-Type: application/javascript
